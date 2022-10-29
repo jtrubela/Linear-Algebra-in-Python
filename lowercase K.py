@@ -20,20 +20,55 @@
 # #############################################################################################
 
 import math
-import numpy as np
-import matplotlib.pyplot as plt
+from operator import truediv
+import numpy as np                              #https://is.gd/EkIBvK
+import matplotlib.pyplot as plt                 #https://is.gd/5akTkL
 from matplotlib.pyplot import plot, ion, show
 
-#  ??FUNCTION??
-#
-#def PlotVertices():
-#    plt.subplots(1)
-# return 
 
+matrix = np.array([[0, 5, 5, 10, 15,    9, 15, 10,  5,  5,  0],
+                   [0, 0, 9,  0,  0, 10.5, 20, 20, 12, 25, 25]])
+
+# Q2: (5 pts) The adjacency matrix of the lower case k
+# Maps edge connection of each vertex
+adjacencyMatrix = np.array([[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+                      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+                      [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]])
+
+#  ??FUNCTION??
+def plotFigure(matrixSize, matrix, adjacencyMatrix, withRotation):
+    theta = 0
+    if withRotation == True:
+        theta = input("Enter the value for 𝜭")
+                                                                    # R_𝜭=[cos𝜭 -sin𝜭;  |
+        # Rotation Matrix                                           #     sin𝜭  cos𝜭],  | 
+        rotation = np.array([[math.cos(theta), -math.sin(theta)],         #-------------------|
+                             [math.sin(theta), math.cos(theta)]])
+        matrixRotated = np.matmul(rotation, matrix)   
+    else:
+        fig, figure = plt.subplots(1)                       #declare figure and list[Axes]
+        
+        for row in range(matrixSize):                           
+            for column in range(row):
+                if adjacencyMatrix[row, column] == 1:         #if the adjacency matrix for current row, col is 1
+                    figure.plot([matrix[0,    row],               #plot a vertice
+                                matrix[0, column]],
+                                [matrix[1,    row],
+                                matrix[1, column]], 
+                                'black')                    
+        figure.axis('off')                    
 
 # Q1: (5 pts) Design vertices of the lower case k
-kMatrix = np.array([[0, 5, 5, 10, 15,    9, 15, 10,  5,  5,  0],
-                    [0, 0, 9,  0,  0, 10.5, 20, 20, 12, 25, 25]])
+#kMatrix = np.array([[0, 5, 5, 10, 15,    9, 15, 10,  5,  5,  0],
+#                    [0, 0, 9,  0,  0, 10.5, 20, 20, 12, 25, 25]])
 
 
 # Q2: (5 pts) The adjacency matrix of the lower case k
@@ -62,6 +97,17 @@ for row in range(11):
                      kMatrix[1, column]], 
                     'black')                    
 k1.axis('off')                                  
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Q4: (10 pts) Rotate the lower case k by 45° counterclockwise around
