@@ -24,7 +24,6 @@ import numpy as np                              #https://is.gd/EkIBvK
 import matplotlib.pyplot as plt                 #https://is.gd/5akTkL
 from matplotlib.pyplot import plot, ion, show
 
-
 matrix = np.array([[0, 5, 5, 10, 15,    9, 15, 10,  5,  5,  0],
                    [0, 0, 9,  0,  0, 10.5, 20, 20, 12, 25, 25]])
 
@@ -42,11 +41,10 @@ adjacencyMatrix = np.array([[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
                       [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
                       [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]])
 
-#  ??FUNCTION??
-def plotFigure(matrixSize, matrix, adjacencyMatrix):
-    fig, figure = plt.subplots(1)                       #declare figure and list[Axes]
-    
-    for row in range(matrixSize):                           
+fig, k1 = plt.subplots(1)
+
+def plotFigure(figure, matrix, adjacencyMatrix): 
+    for row in range(11):                           
         for column in range(row):
             if adjacencyMatrix[row, column] == 1:         #if the adjacency matrix for current row, col is 1
                  figure.plot([matrix[0,    row],               #plot a vertice
@@ -54,8 +52,9 @@ def plotFigure(matrixSize, matrix, adjacencyMatrix):
                              [matrix[1,    row],
                               matrix[1, column]], 
                              'black')                    
-    figure.axis('off')                    
+    return figure.axis('off')             
 
+def comments():
 # Q1: (5 pts) Design vertices of the lower case k
 #kMatrix = np.array([[0, 5, 5, 10, 15,    9, 15, 10,  5,  5,  0],
 #                    [0, 0, 9,  0,  0, 10.5, 20, 20, 12, 25, 25]])
@@ -63,42 +62,33 @@ def plotFigure(matrixSize, matrix, adjacencyMatrix):
 
 # Q2: (5 pts) The adjacency matrix of the lower case k
 # Maps edge connection of each vertex
-adjMatrix = np.array([[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-                      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-                      [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]])
+# adjMatrix = np.array([[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+#                       [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+#                       [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+#                       [0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
+#                       [0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0],
+#                       [0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+#                       [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
+#                       [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+#                       [0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
+#                       [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+#                       [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]])
 
 # Q3: (10 pts) Draw lower case k using Python
-fig, k1 = plt.subplots(1)                       #declare figure and list[Axes]
+# fig, k1 = plt.subplots(1)                       #declare figure and list[Axes]
 
-for row in range(11):                           
-    for column in range(row):
-        if adjMatrix[row, column] == 1:         #if the adjacency matrix for current row, col is 1
-            k1.plot([kMatrix[0,    row],               #plot a vertice
-                     kMatrix[0, column]],
-                    [kMatrix[1,    row],
-                     kMatrix[1, column]], 
-                    'black')                    
-k1.axis('off')                                  
+# for row in range(11):                           
+#     for column in range(row):
+#         if adjMatrix[row, column] == 1:         #if the adjacency matrix for current row, col is 1
+#             k1.plot([kMatrix[0,    row],               #plot a vertice
+#                      kMatrix[0, column]],
+#                     [kMatrix[1,    row],
+#                      kMatrix[1, column]], 
+#                     'black')                    
+# k1.axis('off')                                  
+    return 0
 
-
-
-
-
-
-
-
-
-
-
-
+k1 = plotFigure(k1, matrix, adjacencyMatrix)
 
 # Q4: (10 pts) Rotate the lower case k by 45° counterclockwise around
 # the lower left corner, then use a linear transformation to draw the rotated k.
@@ -108,28 +98,29 @@ theta = math.pi / 3                   #45° CCW ≈ 225° CW---\----------------
 rotation = np.array([[math.cos(45), -math.sin(45)],         #-------------------|
                      [math.sin(theta), math.cos(theta)]])
 
-kRotated = np.matmul(rotation, kMatrix)                     #Matrix Multiplication
+kRotated = np.matmul(rotation, matrix)                     #Matrix Multiplication
 
 fig, k4 = plt.subplots(1)                                   #Declare figure and list[Axes]
+k4 = plotFigure(k4, kRotated, adjacencyMatrix)
 
-for row in range(11):
-    for column in range(row):
-        if adjMatrix[row, column] == 1:
-            k4.plot([kRotated[0,    row], 
-                     kRotated[0, column]], 
-                    [kRotated[1,    row], 
-                     kRotated[1, column]], 
-                    'black')
-k4.axis('off')
+# for row in range(11):
+#     for column in range(row):
+#         if adjacencyMatrix[row, column] == 1:
+#             k4.plot([kRotated[0,    row], 
+#                      kRotated[0, column]], 
+#                     [kRotated[1,    row], 
+#                      kRotated[1, column]], 
+#                     'black')
+# k4.axis('off')
 
 
 # Q5: (10 pts) Use linear transformation to draw backwards lowercase 'k'
 transformation = np.array([[-1, 0], [0, 1]])
-kTransformed = np.matmul(transformation, kMatrix)
+kTransformed = np.matmul(transformation, matrix)
 fig, k5 = plt.subplots(1)
 for row in range(11):
     for column in range(row):
-        if adjMatrix[row, column] == 1:
+        if adjacencyMatrix[row, column] == 1:
             k5.plot([kTransformed[0, row], kTransformed[0, column]], [kTransformed[1, row], kTransformed[1, column]], 'black')
 k5.axis('off')
 
